@@ -48,7 +48,12 @@ class BasePage:
 
     def zoom_icon(self):
         self.driver.find_element(By.XPATH, self.zoomicon).click()
-    #self.driver.WebDriverWait(self, 10).until(EC.element_to_be_clickable((By.XPATH, locator)))
+
+    def mouseover(self):
+        link = self.driver.find_element(By.XPATH, self.hover_beauty)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(beauty).perform()
+
 
     def open_categories(self):
         locator_categories = (By.XPATH, self.expand_categories)

@@ -135,9 +135,23 @@ class Test_SearchBar:
 
         assert "No encontramos resultados" in brand_text
 
-'''***************************************************************************************'''
+    '''***************************************************************************************'''
 
-#me falta por brand, model and physucal characteristics
+
+    def test_categories(self):
+        self.driver = setup
+
+        self.driver.get(BasePage.Url)
+        self.driver.maximize_window()
+
+        self.nike = Fragrance(self.driver)
+        self.men_fragrance.open_categories()
+        self.men_fragrance.mouseover_beauty()
+        self.men_fragrance.perfumes()
+        self.men_fragrance.search_dior("Dior")
+        self.men_fragrance.checkbox_dior()
+
+
 
 
 
