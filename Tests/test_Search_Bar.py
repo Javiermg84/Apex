@@ -21,6 +21,9 @@ class Test_SearchBar:
         self.driver.get(BasePage.Url)
         self.driver.maximize_window()
 
+        """ TC 1.1.01 User write a general search for a product  """
+        """  user will write general search (tenis gym) to check the funct is displaying suggestions  """
+
         self.sbar = BasePage(self.driver)
         self.sbar.search_bar("tenis gym")
         #self.sbar.zoom_icon()
@@ -46,8 +49,10 @@ class Test_SearchBar:
 
     '''***************************************************************************************'''
 
-    #Test Case 2
-    #user is writing a brand, incorrectly. The search bar should display the correct option and suggest products.
+    """  TC 1.1.02 user write a brand in a wrong way  """
+    """ user is writing a brand, incorrectly """
+    """ The search bar should display the correct option and suggest products. """
+
     def test_wrong_brand(self, setup):
         self.driver = setup
 
@@ -57,16 +62,26 @@ class Test_SearchBar:
         self.sbar = BasePage(self.driver)
         self.sbar.search_bar("onder almor") #Under Armor
 
-        """ at least one option for "under armor" should be displayed as suggestion """
+        """ "under armor" should be displayed as an option """
         self.product = search_product(self.driver)
         under_armor_brand = self.product.driver.find_element(By.XPATH, search_product.under_armor)
         ua_text = under_armor_brand.text
 
-        assert "under armor" in ua_text
+        if "under armor" in ua_text:
+            # self.logger.info("************* The search is successfully displaying suggestions for the client ***********")
+            assert True
+        else:
+            # self.logger.info("************* There are no suggestions for the product searched ***********")
+            self.driver.save_screenshot(".\\screenshots\\no_brand_displayed.png")
+            assert False
+
+        #assert "under armor" in ua_text
+        print(ua_text)
 
         """ assert > products related are displayed correctly"""
         options_brand = self.driver.find_elements(By.XPATH, search_product.product_displayed_options)
         options_displayed = (len(options_brand))
+        print(int(options_displayed))
 
         if options_displayed >= 1:
             # self.logger.info("************* The search is successfully displaying suggestions for the client ***********")
@@ -79,6 +94,9 @@ class Test_SearchBar:
     '''***************************************************************************************'''
 
     """ Test Case 1.2.01 User write a model of a product that is not available"""
+    """  Model > ADhydj84659XF  ,  expected > "No encontramos resultados" """
+
+    @pytest.mark.regression
     def test_model(self, setup):
         self.driver = setup
 
@@ -94,6 +112,7 @@ class Test_SearchBar:
         model_text = model.text
 
         assert "No encontramos resultados" in model_text
+        print(model_text)
 
     '''***************************************************************************************'''
 
@@ -118,12 +137,7 @@ class Test_SearchBar:
 
 '''***************************************************************************************'''
 
-    """   TC 1.3.01 Search an article by brand, physical characteristic, model  """
-    """  Categorias > Hombre > Tenis de hombre > Nike > 27.5 > Negro  """
-    """  assert > comparacion resultados con mostrados  """
-
-    def test_nike(self, setup):
-        self.driver = setup
+#me falta por brand, model and physucal characteristics
 
 
 

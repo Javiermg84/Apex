@@ -17,8 +17,11 @@ class New_Account:
     year = "yearSelectorLabel"
     sexo = "male"
     create_accnt_btn_two = "//button[@class='a-btn a-btn--primary']"
-    phone = "phone"
+    phone = "//input[@class='input c20b8ca2a cb0163f2a'][@id='phone']"
     Continue_btn = "//button[@type='submit'][contains(.,'Continuar')]"
+    country_drpdwn = "//button[@value='pick-country-code']"
+    country_search = "//input[@class='input cdf05dcc8__search-input']"
+    choose_c = "//button[@aria-label='Estados Unidos (+1)'][@value='selection-action::US1']"
 
 
 
@@ -33,6 +36,25 @@ class New_Account:
         create_btn = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(create))
         create_btn.click()
 
+    def wrong_email(self, wrongemail):
+        self.driver.find_element(By.ID, self.user_field).send_keys(wrongemail)
+
+    def form_date(self, one_number, letter_e):
+        self.driver.find_element(By.ID, self.day).send_keys(one_number)
+        self.driver.find_element(By.ID, self.month).send_keys(letter_e)
+        self.driver.find_element(By.ID, self.year).send_keys(one_number)
+
+    def gender(self):
+        self.driver.find_element(By.ID, self.sexo).click()
+
+    def create_btn_two(self):
+        self.driver.find_element(By.XPATH, self.create_accnt_btn_two).click()
+
+    def username_clear(self):
+        user = (By.ID, self.user_field)
+        user_email = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(user))
+        user_email.clear()
+
     def username(self, email):
         user = (By.ID, self.user_field)
         user_email = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(user))
@@ -43,17 +65,53 @@ class New_Account:
         user_psswrd = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(paswrd))
         user_psswrd.send_keys(passw)
 
+    def password_clear(self, passw):
+        paswrd = (By.ID, self.psswrd_field)
+        user_psswrd = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(paswrd))
+        user_psswrd.clear()
+
     def create_bton(self):
         btn = (By.XPATH, self.create_accnt_btn)
         b_wait = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(btn))
         b_wait.click()
 
-    def form_usern(self, name):
+    def form_usern(self, usern):
         f_user = (By.ID, self.form_name)
         user_name = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(f_user))
-        user_name.send_keys(name)
+        user_name.send_keys(usern)
 
-    def form_lname(self, name):
+    def form_lname(self, last_name):
         f_lname = (By.ID, self.form_last_name)
         user_name = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(f_lname))
-        user_name.send_keys(name)
+        user_name.send_keys(last_name)
+
+    def phone_num(self, p_num):
+        p_locator = (By.XPATH, self.phone)
+        phone_number = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(p_locator))
+        phone_number.send_keys(p_num)
+
+    def continue_btn(self):
+        self.driver.find_element(By.XPATH, self.Continue_btn).click()
+
+    def country(self):
+        c_drpdwn = (By.XPATH, self.country_drpdwn)
+        country = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(c_drpdwn))
+        country.click()
+
+    def country_search_field(self, country):
+        c_field = (By.XPATH, self.country_search)
+        c_search = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(c_field))
+        c_search.send_keys(country)
+
+    def country_field_clear(self):
+        c_field = (By.XPATH, self.country_search)
+        c_search = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(c_field))
+        c_search.clear()
+
+    def choose_usa(self):
+        c_usa = (By.XPATH, self.choose_c)
+        chooseusa = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(c_usa))
+        chooseusa.click()
+
+
+
