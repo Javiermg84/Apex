@@ -45,6 +45,7 @@ class Test_SmartTV:
         self.smart.size()
         self.smart.size_filter()
 
+
         """  Assert > results are matching correctly with the devices displayed  """
         results_displayed = self.driver.find_elements(By.XPATH, Television.results_tv)
         tvs_displayed = (len(results_displayed))
@@ -57,3 +58,6 @@ class Test_SmartTV:
             #self.logger.info("************* The items displayed do not correctly match the results ***********")
             self.driver.save_screenshot(".\\screenshots\\results_dont_match.png")
             assert False
+
+        self.smart.choose_tv()
+

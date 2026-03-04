@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 
 class BasePage:
 
-    searchbar = "mainSearchbar"
+    searchbar = ":Rctd9d9utsq:-input"
     zoomicon = "(//i[@class='icon-zoom'])[1]"
     Url = "https://www.liverpool.com.mx/tienda/home"
     expand_categories = "//i[@class='icon-hammenu i-hammenu']"
@@ -48,12 +48,12 @@ class BasePage:
 
     def zoom_icon(self):
         self.driver.find_element(By.XPATH, self.zoomicon).click()
-
+    """
     def mouseover(self):
         link = self.driver.find_element(By.XPATH, self.hover_beauty)
         actions = ActionChains(self.driver)
         actions.move_to_element(beauty).perform()
-
+    """
 
     def open_categories(self):
         locator_categories = (By.XPATH, self.expand_categories)

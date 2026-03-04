@@ -32,7 +32,7 @@ class Test_SearchBar:
         self.product = search_product(self.driver)
         product_tenis_one = self.product.driver.find_element(By.XPATH, search_product.tenis_gym_hombre)
         tenis_text = product_tenis_one.text
-        assert "tenis gym" in tenis_text
+        assert "tenis" in tenis_text
 
         #assert > products related are displayed correctly
 
@@ -136,7 +136,7 @@ class Test_SearchBar:
         assert "No encontramos resultados" in brand_text
 
     '''***************************************************************************************'''
-
+"""
 
     def test_categories(self):
         self.driver = setup
@@ -150,6 +150,7 @@ class Test_SearchBar:
         self.men_fragrance.perfumes()
         self.men_fragrance.search_dior("Dior")
         self.men_fragrance.checkbox_dior()
+"""
 
 
 

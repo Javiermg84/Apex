@@ -25,6 +25,8 @@ class Television:
     price_max = "max-price-filter"
     next_bttn = "//span[@class='next-button__filter']"
     filter_price_range = "//div[@class='newChipContainer'][contains(.,'$6000.0 -$9000.0')]"
+    smart_tv_chosen = "//article[@class='d-flex ipod-d-block'][contains(.,'Pantalla Smart TV Samsung LED de 43 pulgadas Full HD UN43T5300AFXZX')]"
+    bag = "//button[@class='a-btn a-btn--tertiary mb-3 '][contains(.,'Agregar a mi bolsa')]"
 
     # init and locators
     def __init__(self, driver):
@@ -95,5 +97,11 @@ class Television:
 
     def next_btn(self):
         self.driver.find_element(By.XPATH, self.next_bttn).click()
+
+    def choose_tv(self):
+        self.driver.find_element(By.XPATH, self.smart_tv_chosen).click()
+
+    def add_bag(self):
+        self.driver.find_element(By.XPATH, self.bag).click()
 
 
